@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block title %}
+    Messenger - main site
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" type = "text/css" href="{% static 'main_page.css' %}">
+{% endblock %}
+
+{% block site %}
+
+    <Header>Messenger, be in touch!</Header>
+
+    <main>
+        <section class = "login-section">
+            <form class = "login-form">
+                <input type = "text" name = "email" placeholder = "email">
+                <input type = "password" name = "password" placeholder = "password">
+                <input type = "submit" value = "log in!">
+            </form>
+
+            <a href ="">Don't have account? Don't worry, click here to register!</a>
+        </section>
+    </main>
+
+{% endblock %}

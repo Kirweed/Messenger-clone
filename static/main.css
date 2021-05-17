@@ -1,0 +1,109 @@
+*{
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #333;
+	margin: 0;
+	padding: 0;
+	color: #fff;
+}
+
+.options {
+	position: absolute;
+	top: 100px;
+	right: 100px;
+	color: #222;
+	width: 50px;
+	height: 50px;
+	border: 1px solid #222;
+	border-radius: 20px;
+	padding: 15px;
+	background-color: #888;
+}
+
+.options:hover {
+	cursor: pointer;
+	background-color: #666;
+}
+
+header {
+	width: 100%;
+	height: 10vh;
+	text-align: center;
+	font-weight: bold;
+	font-size: 35px;
+}
+
+.container {
+	width: 98vw;
+	height: 80vh;
+	margin-right: auto;
+	margin-left: auto;
+	border: 1px solid #222;
+	display: flex;
+}
+
+.conversation-box {
+	flex: 4;
+	border: 1px solid #222;
+}
+
+.conversation-window {
+	width: 100%;
+	height: 80%;
+	background-color: #fff;
+}
+
+.typing-box {
+	width: 100%;
+	height: 20%;
+	display: flex;
+}
+
+.conversation-input {
+	flex: 7;
+	background-color: #77f7f5;
+	box-shadow: none;
+	border: 1px solid #222;
+	padding: 0px;
+	margin: 0px;
+	font-size: 20px;
+}
+
+.sending-button {
+	flex: 1;
+	background-color: #3e8786;
+	box-shadow: none;
+	border: 1px solid #222;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.sending-button:hover {
+	cursor: pointer;
+	background-color: #32706f;
+}
+
+.inbox {
+	flex: 1;
+	border: 1px solid #222;
+	display: flex;
+	flex-direction: column;
+	background-color: #3e8786;
+}
+
+.conversation {
+	width: 85%;
+	height: 15%;
+	border: 1px solid #222;
+	border-radius: 5px;
+	margin: auto auto;
+	background-color: #fff;
+	color: #222;
+}
+
+footer {
+	width: 100%;
+	height: 10vh;
+}
