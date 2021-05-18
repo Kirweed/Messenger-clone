@@ -35,8 +35,23 @@ body {
     z-index: 100;
     width: 150px;
     height: 250px;
-    background-color: #2E5C39;
+    background-color: #6EDB89;
+    border: 1px solid #222;
     border-radius: 5px;
+}
+
+.log-out-btn {
+    height: 30px;
+    width: 80%;
+    margin: 3px auto;
+    background-color: #eb4034;
+    border: 1px solid #222;
+    border-radius: 5px;
+}
+
+.log-out-btn:hover {
+    cursor: pointer;
+    background-color: #c92b20;
 }
 
 .container {
@@ -69,7 +84,6 @@ p.from-me-message {
     max-width: 60%;
     min-width: 35%;
     min-height: 25px;
-    /*border: 1px solid #222;*/
     border-radius: 5px;
     align-self: flex-start;
     position: relative;
