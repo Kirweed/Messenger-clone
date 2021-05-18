@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from webEngine.views import main_page_render
+from webEngine.views import main_page_render, messenger_main_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('main/', main_page_render),
+    path('messenger/', messenger_main_view),
 ]

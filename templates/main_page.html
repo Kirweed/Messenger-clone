@@ -16,8 +16,9 @@
 
     <main>
         <section class = "login-section">
-            <form class = "login-form">
-                <input type = "text" name = "email" placeholder = "email">
+            <form class = "login-form" method = "POST">
+                {% csrf_token %}
+                <input type = "text" name = "username" placeholder = "username">
                 <input type = "password" name = "password" placeholder = "password">
                 <input type = "submit" value = "log in!">
             </form>
