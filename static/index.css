@@ -10,6 +10,11 @@ body {
 	text-align: center;
 }
 
+img {
+    max-width:100%;
+    height:auto;
+}
+
 .options {
     z-index: 100;
 	position: absolute;
@@ -171,9 +176,35 @@ p.to-me-message::after {
 .inbox {
 	flex: 1;
 	border: 1px solid #222;
-	display: flex;
-	flex-direction: column;
 	background-color: #2E5C39;
+}
+
+.inbox-conversation-wrapper {
+    display: flex;
+	flex-direction: column;
+}
+
+.inbox-label {
+    width: 100%;
+    height: 10%;
+    padding: 2%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-photo {
+    flex: 2;
+}
+
+.user-photo img {
+    border-radius: 50%;
+    border: 2px solid #222;
+}
+
+.user-nick {
+    flex: 4;
+    text-transform: uppercase;
+    align-self: center;
 }
 
 .conversation {
@@ -181,7 +212,8 @@ p.to-me-message::after {
 	height: 15%;
 	border: 1px solid #222;
 	border-radius: 5px;
-	margin: auto auto;
+	margin: 20px auto;
+	padding: 20px;
 	background-color: #fff;
 	color: #222;
 }

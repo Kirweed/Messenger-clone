@@ -1,5 +1,40 @@
 let show_opt = false;
 const opt = $('.options');
+const USER_ID = $('.id');
+
+const CONVERSATION_ARR = new Array;
+
+class Message {
+
+    constructor(to, from, text) {
+        this.to = to;
+        this.from = from;
+        this.text = text;
+    }
+}
+
+class Conversation {
+
+    constructor(user, messages = null, last_message_time = null) {
+        const MESSAGE_ARR = new Array;
+
+        this.user= user;
+        this.messages = messages;
+        this.last_message_time = last_message_time;
+    }
+
+    appendToInbox() {
+        let HTML_string =
+            `<div class = "conversation">
+				<div class = "person-conversation-label">
+				    Anadrzej:
+				</div>
+				<div class = "message-conversation-label">
+					Hej, co tam?
+				</div>
+			</div>`
+    }
+}
 
 function $(handler) {
 	return document.querySelector(handler);
@@ -26,3 +61,40 @@ opt.addEventListener('click', (event) => {
         show_opt = false;
     }
 });
+
+function init() {
+
+
+}
+
+init()
+    .then(function(json_data) {
+        const NICK_DIV = $('.user-nick'),
+              PHOTO_DIV = $('.user-photo'),
+              {username: NICK, info: { image }} = JSON.parse(json_data);
+        NICK_DIV.textContent = NICK;
+        PHOTO_DIV.innerHTML = `<img src = " ${image} ">`;
+    })
+    .then(function(){
+            /*const xhr = new XMLHttpRequest();
+            xhr.open('GET', '../rest/conversation/' + USER_ID.textContent, true)
+
+            p = new Promise(function(resolve, reject){
+                xhr.onload = function() {
+                    if(xhr.status == 200) {
+                        resolve(xhr.responseText);
+                    } else {
+                        reject();
+                    }
+                }
+
+                xhr.onerror = function() {
+                    reject();
+                };
+            });
+
+            xhr.send(null);
+
+            return p;*/
+    })
+    .catch(() => console.log("AJAX ERROR"));

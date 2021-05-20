@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
-from .serializers import UserSerializer, ConversationSerializer, MessageSerializer
+from .serializers import UserInfoSerializer, ConversationSerializer, MessageSerializer, UserSerializer
 from django.contrib.auth.models import User
-from . models import Conversation, Message
+from . models import Conversation, Message, UserInfo
 
 # Create your views here.
 
@@ -12,6 +12,11 @@ from . models import Conversation, Message
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+class UserInfoViewSet(viewsets.ModelViewSet):
+    queryset = UserInfo.objects.all()
+    serializer_class = UserInfoSerializer
 
 
 class ConversationViewSet(viewsets.ModelViewSet):
@@ -32,6 +37,7 @@ def main_page_render(request):
 
         if user is not None:
             login(request, user)
+            request.session['member_id'] = user.id
             return redirect(messenger_main_view)
         else:
             return render(request, 'main_page.html')
@@ -41,7 +47,7 @@ def main_page_render(request):
 
 @login_required
 def messenger_main_view(request):
-    return render(request, 'index.html')
+    return render(request, 'index.html', {'id': request.session['member_id']})
 
 
 def logout_view(request):

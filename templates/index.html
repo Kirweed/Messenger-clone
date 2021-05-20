@@ -13,6 +13,8 @@
 
 {% block site %}
 
+	<div class = "id" style = "display: none;">{{id}}</div>
+
 	<div class = "options"><i class="fas fa-bars"></i></div>
 
 	<div class = "options-wrapper">
@@ -25,23 +27,28 @@
 
 	<div class = "container">
 		<div class = "inbox">
-			<div class "inbox-label">Lista rozmów:</div>
-			<div class = "conversation">
-				<div class = "person-conversation-label">Anadrzej:</div>
-				<div class = "message-conversation-label">
-					Hej, co tam?
-				</div>
+			<div class =  "inbox-label">
+				<div class = "user-photo"></div>
+				<div class = "user-nick"></div>
 			</div>
-			<div class = "conversation">
-				<div class = "person-conversation-label">Helena:</div>
-				<div class = "message-conversation-label">
-					Jutro nie mam czasu
+			<div class = "inbox-conversation-wrapper">
+				<div class = "conversation">
+					<div class = "person-conversation-label">Anadrzej:</div>
+					<div class = "message-conversation-label">
+						Hej, co tam?
+					</div>
 				</div>
-			</div>
-			<div class = "conversation">
-				<div class = "person-conversation-label">Janusz:</div>
-				<div class = "message-conversation-label">
-					Oddawaj kasę, stary zgredzie!
+				<div class = "conversation">
+					<div class = "person-conversation-label">Helena:</div>
+					<div class = "message-conversation-label">
+						Jutro nie mam czasu
+					</div>
+				</div>
+				<div class = "conversation">
+					<div class = "person-conversation-label">Janusz:</div>
+					<div class = "message-conversation-label">
+						Oddawaj kasę, stary zgredzie!
+					</div>
 				</div>
 			</div>
 		</div>
@@ -61,7 +68,7 @@
 				</p>
 			</div>
 			<div class = "typing-box">
-				<textarea type = "text" class = "conversation-input"></textarea>
+				<textarea class = "conversation-input"></textarea>
 				<button class = "sending-button">Wyślij!</button>
 			</div>
 		</div>
