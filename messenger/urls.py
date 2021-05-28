@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from webEngine.views import main_page_render, messenger_main_view, logout_view
 from rest_framework import routers
-from webEngine.views import UserInfoViewSet, ConversationViewSet, MessageViewSet, UserViewSet
+from webEngine.views import UserInfoViewSet, ConversationViewSet, MessageViewSet, UserViewSet, UserConversationViewSet
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -26,6 +26,7 @@ router.register(r'users', UserViewSet)
 router.register(r'conversations', ConversationViewSet)
 router.register(r'messages', MessageViewSet)
 router.register(r'users_info', UserInfoViewSet)
+router.register(r'user_conversations', UserConversationViewSet)
 
 urlpatterns = [
     path('rest/', include(router.urls)),

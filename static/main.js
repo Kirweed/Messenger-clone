@@ -1,6 +1,5 @@
 let show_opt = false;
 const opt = $('.options');
-const USER_ID = $('.id');
 
 const CONVERSATION_ARR = new Array;
 
@@ -63,38 +62,36 @@ opt.addEventListener('click', (event) => {
 });
 
 function init() {
+    const USER_ID = $('.id');
 
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', '../rest/users/' + USER_ID.textContent, true)
 
+    p = new Promise(function(resolve, reject){
+        xhr.onload = function() {
+            if(xhr.status >= 200 && xhr.status < 400) {
+                resolve(xhr.responseText);
+            } else {
+                reject(new Error("Some error occurred"));
+            }
+        }
+
+        xhr.onerror = function() {
+            reject(new Error("Some error occurred"));
+        };
+    });
+
+    xhr.send();
+
+    return p;
 }
 
 init()
-    .then(function(json_data) {
-        const NICK_DIV = $('.user-nick'),
-              PHOTO_DIV = $('.user-photo'),
-              {username: NICK, info: { image }} = JSON.parse(json_data);
-        NICK_DIV.textContent = NICK;
-        PHOTO_DIV.innerHTML = `<img src = " ${image} ">`;
-    })
-    .then(function(){
-            /*const xhr = new XMLHttpRequest();
-            xhr.open('GET', '../rest/conversation/' + USER_ID.textContent, true)
-
-            p = new Promise(function(resolve, reject){
-                xhr.onload = function() {
-                    if(xhr.status == 200) {
-                        resolve(xhr.responseText);
-                    } else {
-                        reject();
-                    }
-                }
-
-                xhr.onerror = function() {
-                    reject();
-                };
-            });
-
-            xhr.send(null);
-
-            return p;*/
-    })
-    .catch(() => console.log("AJAX ERROR"));
+.then(json_data => {
+    const NICK_DIV = $('.user-nick'),
+          PHOTO_DIV = $('.user-photo'),
+          {username: NICK, info: { image }} = JSON.parse(json_data);
+    NICK_DIV.textContent = NICK;
+    PHOTO_DIV.innerHTML = `<img src = " ${image} ">`;
+})
+.catch(() => console.log("AJAX ERROR"));

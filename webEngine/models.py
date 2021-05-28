@@ -10,7 +10,7 @@ class UserInfo(models.Model):
 
 
 class Conversation(models.Model):
-    user = models.ManyToManyField(User)
+    user = models.ManyToManyField(User, related_name='conversation')
 
     def __str__(self):
         fin_str = ""
