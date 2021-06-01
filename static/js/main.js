@@ -1,5 +1,9 @@
+import $ from './functions/handler.js';
+import Conversation from './classes/Conversation.js';
+
 let show_opt = false;
 const opt = $('.options');
+const USER_ID = $('.id');
 
 const CONVERSATION_ARR = new Array;
 
@@ -10,33 +14,6 @@ class Message {
         this.from = from;
         this.text = text;
     }
-}
-
-class Conversation {
-
-    constructor(user, messages = null, last_message_time = null) {
-        const MESSAGE_ARR = new Array;
-
-        this.user= user;
-        this.messages = messages;
-        this.last_message_time = last_message_time;
-    }
-
-    appendToInbox() {
-        let HTML_string =
-            `<div class = "conversation">
-				<div class = "person-conversation-label">
-				    Anadrzej:
-				</div>
-				<div class = "message-conversation-label">
-					Hej, co tam?
-				</div>
-			</div>`
-    }
-}
-
-function $(handler) {
-	return document.querySelector(handler);
 }
 
 $('.sending-button').addEventListener('click', (event) => {
@@ -62,12 +39,11 @@ opt.addEventListener('click', (event) => {
 });
 
 function init() {
-    const USER_ID = $('.id');
 
     const xhr = new XMLHttpRequest();
     xhr.open('GET', '../rest/users/' + USER_ID.textContent, true)
 
-    p = new Promise(function(resolve, reject){
+    let p = new Promise(function(resolve, reject){
         xhr.onload = function() {
             if(xhr.status >= 200 && xhr.status < 400) {
                 resolve(xhr.responseText);
@@ -94,4 +70,36 @@ init()
     NICK_DIV.textContent = NICK;
     PHOTO_DIV.innerHTML = `<img src = " ${image} ">`;
 })
-.catch(() => console.log("AJAX ERROR"));
+.then(() => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', '../rest/user_conversations/' + USER_ID.textContent, true)
+    let p = new Promise(function(resolve, reject){
+        xhr.onload = function() {
+            if(xhr.status >= 200 && xhr.status < 400) {
+                resolve(JSON.parse(xhr.responseText));
+            } else {
+                reject(new Error("Some error occurred"));
+            }
+        }
+
+        xhr.onerror = function() {
+            reject(new Error("Some error occurred"));
+        };
+    });
+
+    xhr.send();
+
+    return p;
+})
+.then( json_data => {
+
+    const USERS_ARR = [];
+
+    for(let user of json_data.conversation[0].user) {
+        if(user.id !== parseInt(USER_ID.textContent)) {
+            USERS_ARR.push(user);
+        }
+    }
+    CONVERSATION_ARR.push(new Conversation(USERS_ARR));
+})
+.catch((e) => console.log(e));

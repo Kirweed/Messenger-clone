@@ -26,10 +26,11 @@ class MessageSerializer(serializers.ModelSerializer):
 
 class ConversationSerializer(serializers.ModelSerializer):
     messages = MessageSerializer(many=True)
+    user = UserSerializer(many=True)
 
     class Meta:
         model = Conversation
-        fields = ['id', 'messages']
+        fields = ['id', 'messages', 'user']
 
 
 class UserConversationSerializer(serializers.ModelSerializer):
