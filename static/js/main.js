@@ -7,15 +7,6 @@ const USER_ID = $('.id');
 
 const CONVERSATION_ARR = new Array;
 
-class Message {
-
-    constructor(to, from, text) {
-        this.to = to;
-        this.from = from;
-        this.text = text;
-    }
-}
-
 $('.sending-button').addEventListener('click', (event) => {
 	$('.conversation-input').value = '';
 });
@@ -93,13 +84,48 @@ init()
 })
 .then( json_data => {
 
-    const USERS_ARR = [];
+    for(let conv of json_data.conversation) {
 
-    for(let user of json_data.conversation[0].user) {
-        if(user.id !== parseInt(USER_ID.textContent)) {
-            USERS_ARR.push(user);
+        const USERS_ARR = [];
+
+        for(let user of conv.user) {
+
+            if(user.id !== parseInt(USER_ID.textContent)) {
+                USERS_ARR.push(user);
+            }
         }
+        CONVERSATION_ARR.push(new Conversation(USERS_ARR, conv.messages));
     }
-    CONVERSATION_ARR.push(new Conversation(USERS_ARR));
+
+    for(let conv of CONVERSATION_ARR) {
+
+        conv.div.addEventListener('click', function() {
+
+            for(let convv of CONVERSATION_ARR) {
+
+                if(convv.active === true) {
+
+                    convv.div.classList.remove("active-conversation");
+                    convv.active = false;
+                }
+            }
+
+            this.classList.add("active-conversation");
+            conv.active = true;
+            $('.conversation-window').innerHTML = "";
+            conv.displayMessages();
+        });
+    }
+
+    displayCurrentConversation();
 })
 .catch((e) => console.log(e));
+
+function displayCurrentConversation() {
+
+    const c = CONVERSATION_ARR[0];
+    c.div.classList.add("active-conversation");
+    c.active = true;
+    $('.conversation-window').innerHTML = "";
+    c.displayMessages();
+}

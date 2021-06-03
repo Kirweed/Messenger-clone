@@ -217,3 +217,12 @@ p.to-me-message::after {
 	background-color: #fff;
 	color: #222;
 }
+
+.conversation:hover {
+    cursor: pointer;
+    background-color: #eee;
+}
+
+.active-conversation {
+    border: 1px solid #f5bc42;
+}
