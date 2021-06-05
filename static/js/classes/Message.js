@@ -1,4 +1,5 @@
 import $ from '../functions/handler.js';
+import { USER_OBJ, returnActiveConversation } from '../main.js';
 
 const USER_ID = $('.id');
 
@@ -22,5 +23,16 @@ export default class Message {
 
         p.textContent = this.text;
         $('.conversation-window').appendChild(p);
+    }
+
+    static prepareToSend(text) {
+
+        let obj = {
+            from_who: USER_OBJ.id,
+            message_content: text,
+            conversation: returnActiveConversation().id
+        };
+
+        return JSON.stringify(obj);
     }
 }

@@ -24,6 +24,12 @@ class MessageSerializer(serializers.ModelSerializer):
         fields = ['from_who', 'message_content', 'send_time']
 
 
+class MessageMiniSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = ['from_who', 'message_content', 'send_time', 'conversation']
+
+
 class ConversationSerializer(serializers.ModelSerializer):
     messages = MessageSerializer(many=True)
     user = UserSerializer(many=True)

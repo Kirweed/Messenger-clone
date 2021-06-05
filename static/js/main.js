@@ -1,13 +1,27 @@
 import $ from './functions/handler.js';
 import Conversation from './classes/Conversation.js';
 
+export let USER_OBJ = {};
 let show_opt = false;
 const opt = $('.options');
 const USER_ID = $('.id');
 
 const CONVERSATION_ARR = new Array;
 
+export function returnActiveConversation() {
+    for(let conv of CONVERSATION_ARR) {
+        if(conv.active === true) {
+            return conv;
+        }
+    }
+}
+
 $('.sending-button').addEventListener('click', (event) => {
+    const conv = returnActiveConversation();
+    const input_text = $('.conversation-input').value;
+    conv.sendMessage(input_text).then( () => {
+        conv.addMessage(input_text);
+    });
 	$('.conversation-input').value = '';
 });
 
@@ -55,6 +69,7 @@ function init() {
 
 init()
 .then(json_data => {
+    USER_OBJ = JSON.parse(json_data);
     const NICK_DIV = $('.user-nick'),
           PHOTO_DIV = $('.user-photo'),
           {username: NICK, info: { image }} = JSON.parse(json_data);
@@ -94,7 +109,7 @@ init()
                 USERS_ARR.push(user);
             }
         }
-        CONVERSATION_ARR.push(new Conversation(USERS_ARR, conv.messages));
+        CONVERSATION_ARR.push(new Conversation(USERS_ARR, conv.messages, conv.id));
     }
 
     for(let conv of CONVERSATION_ARR) {

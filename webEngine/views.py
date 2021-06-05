@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
 from .serializers import UserInfoSerializer, ConversationSerializer, MessageSerializer, \
-                         UserSerializer, UserConversationSerializer
+                         UserSerializer, UserConversationSerializer, MessageMiniSerializer
 from django.contrib.auth.models import User
 from . models import Conversation, Message, UserInfo
 
@@ -28,6 +28,11 @@ class ConversationViewSet(viewsets.ModelViewSet):
 class MessageViewSet(viewsets.ModelViewSet):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
+
+
+class MessageMiniViewSet(viewsets.ModelViewSet):
+    queryset = Message.objects.all()
+    serializer_class = MessageMiniSerializer
 
 
 class UserConversationViewSet(viewsets.ModelViewSet):
