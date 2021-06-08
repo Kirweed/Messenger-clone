@@ -27,7 +27,7 @@ export default class Conversation {
     constructor(user, messages = null, id) {
 
         this.loadMessages(messages);
-        this.user= user;
+        this.user = user;
         this.id = id;
 
         this.appendToInbox();
@@ -64,15 +64,29 @@ export default class Conversation {
     appendToInbox() {
 
         let conv_div = document.createElement('div');
+        let image_div;
         conv_div.classList.add("conversation");
+        const first_letter = this.user[0].username.charAt(0);
         INBOX_DIV.appendChild(conv_div);
+        if(this.user[0].info !== null && this.user[0].info !== undefined) {
+
+            if(typeof this.user[0].info.image === 'string') {
+                const image_src = this.user[0].info.image;
+                image_div = `<div class = 'image-in-conv'><img src = "${image_src}"></div>`;
+            } else {
+                image_div = `<div class = 'image-in-conv'><p>${first_letter}</p></div>`;
+            }
+        } else {
+            image_div = `<div class = 'image-in-conv'><p>${first_letter}</p></div>`;
+        }
         let HTML_string =
-            `<div class = "person-conversation-label">
+            `${image_div}
+            <div class = "person-conversation-label">
 		        ${this.user[0].username}
 			</div>
 			<div class = "message-conversation-label">
 				Hej, co tam?
-			</div>`
+			</div>`;
 
         conv_div.innerHTML = HTML_string;
 

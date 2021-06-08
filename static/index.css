@@ -40,7 +40,7 @@ img {
     z-index: 100;
     width: 150px;
     height: 250px;
-    background-color: #6EDB89;
+    background-color: #89D3E1;
     border: 1px solid #222;
     border-radius: 5px;
 }
@@ -65,11 +65,12 @@ img {
 	margin-right: auto;
 	margin-left: auto;
 	border: 1px solid #222;
-	display: flex;
+	display: grid;
+	grid-template-columns: 1fr 4fr;
+	grid-template-rows: 100%;
 }
 
 .conversation-box {
-	flex: 4;
 	border: 1px solid #222;
 }
 
@@ -80,18 +81,19 @@ img {
 	background-color: #fff;
 	display: flex;
 	flex-direction: column;
+	overflow-y: scroll;
 }
 
 p.to-me-message,
 p.from-me-message {
     padding: 1em;
-    background-color: #2E5C39;
+    background-color: #1C515C;
     max-width: 60%;
     min-width: 35%;
-    min-height: 25px;
     border-radius: 5px;
     align-self: flex-start;
     position: relative;
+    flex-grow: 1;
 }
 
 p.to-me-message::before,
@@ -113,7 +115,7 @@ p.from-me-message::before {
     width: 14px;
     height: 14px;
     border-bottom-left-radius: 10px;
-    background-color: #2E5C39;
+    background-color: #1C515C;
 }
 
 p.from-me-message::after {
@@ -131,7 +133,7 @@ p.to-me-message::before {
     width: 14px;
     height: 14px;
     border-bottom-right-radius: 10px;
-    background-color: #2E5C39;
+    background-color: #1C515C;
 }
 
 p.to-me-message::after {
@@ -151,7 +153,7 @@ p.to-me-message::after {
 
 .conversation-input {
 	flex: 7;
-	background-color: #6EDB89;
+	background-color: #89D3E1;
 	box-shadow: none;
 	border: 1px solid #222;
 	padding: 0px;
@@ -161,7 +163,7 @@ p.to-me-message::after {
 
 .sending-button {
 	flex: 1;
-	background-color: #2E5C39;
+	background-color: #1C515C;
 	box-shadow: none;
 	border: 1px solid #222;
 	font-size: 25px;
@@ -170,26 +172,29 @@ p.to-me-message::after {
 
 .sending-button:hover {
 	cursor: pointer;
-	background-color: #32706f;
+	background-color: #38565C;
 }
 
 .inbox {
-	flex: 1;
 	border: 1px solid #222;
-	background-color: #2E5C39;
+	background-color: #89D3E1;
 }
 
 .inbox-conversation-wrapper {
+    height: 85%;
     display: flex;
 	flex-direction: column;
+	overflow-y: scroll;
 }
 
 .inbox-label {
     width: 100%;
-    height: 10%;
+    height: 15%;
     padding: 2%;
     display: flex;
     justify-content: space-between;
+    border-bottom: 1px solid #222;
+    background-color: #3495A8;
 }
 
 .user-photo {
@@ -197,8 +202,9 @@ p.to-me-message::after {
 }
 
 .user-photo img {
+    height: 100%;
     border-radius: 50%;
-    border: 2px solid #222;
+    border: 2px solid #fff;
 }
 
 .user-nick {
@@ -214,15 +220,30 @@ p.to-me-message::after {
 	border-radius: 5px;
 	margin: 20px auto;
 	padding: 20px;
-	background-color: #fff;
-	color: #222;
+	background-color: #1C515C;
+	position: relative;
 }
 
 .conversation:hover {
     cursor: pointer;
-    background-color: #eee;
+    background-color: #38565C;
 }
 
 .active-conversation {
-    border: 1px solid #f5bc42;
+    border: 2px solid #f5ed00;
+}
+
+.image-in-conv {
+    position: absolute;
+    top: -13%;
+    left: -4%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #222;
+    background-color: #fff;
+    color: #111;
+    text-transform: uppercase;
+    font-weight: bold;
+    z-index: 20;
 }

@@ -16,14 +16,25 @@ export function returnActiveConversation() {
     }
 }
 
-$('.sending-button').addEventListener('click', (event) => {
+function clicks(event) {
+    if(event.keyCode === 13) {
+        afterSend();
+    }
+}
+
+function afterSend() {
+
     const conv = returnActiveConversation();
     const input_text = $('.conversation-input').value;
     conv.sendMessage(input_text).then( () => {
         conv.addMessage(input_text);
     });
 	$('.conversation-input').value = '';
-});
+
+}
+
+$('.sending-button').addEventListener('click', afterSend);
+document.addEventListener('keydown', clicks);
 
 opt.addEventListener('click', (event) => {
 

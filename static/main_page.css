@@ -3,8 +3,8 @@
 }
 
 body {
-	background: rgb(73,92,78);
-    background: linear-gradient(58deg, rgba(73,92,78,1) 0%, rgba(180,225,191,1) 100%);
+	background: rgb(56,86,92);
+    background: linear-gradient(58deg, rgba(56,86,92,1) 0%, rgba(137,211,225,1) 100%);
 	margin: 0;
 	padding: 0;
 	color: #fff;
@@ -24,7 +24,7 @@ header {
     width: 40%;
     height: 440px;
     margin: 50px auto;
-    background-color: #2E5C39;
+    background-color: #1C515C;
     -webkit-box-shadow: 5px 5px 6px 5px rgba(0,0,0,0.7);
     box-shadow: 5px 5px 6px 5px rgba(0,0,0,0.7);
     border-radius: 5px;
@@ -59,14 +59,14 @@ input[type=password] {
 input[type=submit] {
     margin: 0 auto;
     width: 60%;
-    background-color: #6EDB89;
+    background-color: #3495a8;
     font-size: 35px;
     border: 1px solid #fff;
     margin-top: 20px;
 }
 
 input[type=submit]:hover {
-    background-color: #54A869;
+    background-color: #38565c;
     cursor: pointer;
 }
 
