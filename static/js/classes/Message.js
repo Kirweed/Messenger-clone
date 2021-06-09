@@ -1,5 +1,6 @@
 import $ from '../functions/handler.js';
-import { USER_OBJ, returnActiveConversation } from '../main.js';
+import { USER_OBJ, user } from '../main.js';
+import User from './User.js';
 
 const USER_ID = $('.id');
 
@@ -30,7 +31,7 @@ export default class Message {
         let obj = {
             from_who: USER_OBJ.id,
             message_content: text,
-            conversation: returnActiveConversation().id
+            conversation: user.returnActiveConversation().id
         };
 
         return JSON.stringify(obj);

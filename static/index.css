@@ -247,3 +247,7 @@ p.to-me-message::after {
     font-weight: bold;
     z-index: 20;
 }
+
+.image-in-conv img {
+    border-radius: 50%;
+}
