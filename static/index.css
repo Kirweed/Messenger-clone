@@ -72,6 +72,77 @@ img {
 
 .conversation-box {
 	border: 1px solid #222;
+	position: relative;
+}
+
+.add-friend-button {
+    width: 50px;
+    height: 50px;
+    background-color: #222;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-align: center;
+    z-index: 100;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.add-friend-button:hover {
+    cursor: pointer;
+    background-color: #111;
+}
+
+.add-friend-overlay {
+    width: 100%;
+    height: 100%;
+    z-index: 101;
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, .85);
+}
+
+.add-friend-overlay-content {
+    width: 80%;
+    height: 80%;
+    background-color: #ddd;
+    border: 2px solid #222;
+    border-radius: 20px;
+    margin: 5% auto;
+}
+
+.friend-search {
+    width: 100%;
+    height: 10%;
+    padding-top: 1%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-friend-overlay input[type=text] {
+    width: 50%;
+    height: 90%;
+    border-radius: 35px;
+    border: 1px solid #222;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.add-friend-overlay input[type=text]:focus {
+    outline: none;
+}
+
+.search-icon {
+    color: #222;
+    padding-left: 10px;
+    font-size: 20px;
+}
+
+.search-icon:hover {
+    cursor: pointer;
+    color: #111;
+    transform: scale(1.1);
 }
 
 .conversation-window {

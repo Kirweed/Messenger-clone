@@ -6,6 +6,7 @@ export let USER_OBJ = {};
 export let user;
 let show_opt = false;
 const opt = $('.options');
+const add_friend_btn = $(".add-friend-button");
 const USER_ID = $('.id');
 
 function clicks(event) {
@@ -28,6 +29,19 @@ opt.addEventListener('click', (event) => {
     } else {
         opt_w.style.display = 'none';
         show_opt = false;
+    }
+});
+
+add_friend_btn.addEventListener('click', () => {
+    const overlay = $(".add-friend-overlay");
+    overlay.style.display = 'block';
+    overlay.addEventListener('click', removeOverlay);
+
+    function removeOverlay(event) {
+        if(event.target === overlay) {
+            overlay.style.display = 'none';
+            overlay.removeEventListener('click', removeOverlay);
+        }
     }
 });
 
